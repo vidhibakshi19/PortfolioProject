@@ -186,95 +186,95 @@ will likely refine your design to make your implementation easier to use.
 
 - Component Design #1: TravelLog
   - **Description**:
-    The purpose of this component is to model a travel log, which keeps track of trips in the order they were taken using a queue. This ensures that travel entries are recorded in chronological order. The kernel methods handle adding and retrieving trips, while the secondary methods provide advanced operations like filtering, merging, and sorting.
+    - The purpose of this component is to model a travel log, which keeps track of trips in the order they were taken using a queue. This ensures that travel entries are recorded in chronological order. The kernel methods handle adding and retrieving trips, while the secondary methods provide advanced operations like filtering, merging, and sorting.
   - **Kernel Methods**:
-    `void addEntry(String location, String date, String notes)`: adds a travel entry with the given `location`, `date`, and `notes` to the log
-    `String getNextEntry()`: removes and returns the earliest entry in the log
-    `String peekNextEntry()`: returns the earliest entry without removing it
-    `int getLogSize()`: returns the number of entries in the travel log
-    `void clearLog()`: removes all entries from the travel log
+    - `void addEntry(String location, String date, String notes)`: adds a travel entry with the given `location`, `date`, and `notes` to the log
+    - `String getNextEntry()`: removes and returns the earliest entry in the log
+    - `String peekNextEntry()`: returns the earliest entry without removing it
+    - `int getLogSize()`: returns the number of entries in the travel log
+    - `void clearLog()`: removes all entries from the travel log
   - **Secondary Methods**:
-    `void reorderByDate()`: sorts the travel log chronologically using a queue-based sorting algorithm
-    `boolean contains(String location)`: checks if the log contains an entry for a given location
-    `Queue<String> filterByLocation(String location)`: returns a queue of entries that match a specific location
-    `Queue<String> filterByYear(int year)`: returns a queue of entries from a specific year
-    `void mergeLogs(TravelLog other)`: merges another `TravelLog` into this one while maintaining chronological order
-    `void removeEntry(String location, String date)`: removes a specific entry based on location and date
-    `void printLog()`: displays the entire travel log in order
+    - `void reorderByDate()`: sorts the travel log chronologically using a queue-based sorting algorithm
+    - `boolean contains(String location)`: checks if the log contains an entry for a given location
+    - `Queue<String> filterByLocation(String location)`: returns a queue of entries that match a specific location
+    - `Queue<String> filterByYear(int year)`: returns a queue of entries from a specific year
+    - `void mergeLogs(TravelLog other)`: merges another `TravelLog` into this one while maintaining chronological order
+    - `void removeEntry(String location, String date)`: removes a specific entry based on location and date
+    - `void printLog()`: displays the entire travel log in order
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      Yes, `TravelLog` must be mutable because entries can be added, removed, and reordered dynamically.
+      - Yes, `TravelLog` must be mutable because entries can be added, removed, and reordered dynamically.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      Possibly. A TripEntry class might be useful to store `location`, `date`, and `notes` instead of just using `String`.
+      - Possibly. A TripEntry class might be useful to store `location`, `date`, and `notes` instead of just using `String`.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      Possibly. An enum like `TransportMode { PLANE, TRAIN, CAR, BUS, BOAT }` could be used for optional categorization.
+      - Possibly. An enum like `TransportMode { PLANE, TRAIN, CAR, BUS, BOAT }` could be used for optional categorization.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      Yes. For example, `filterByLocation(String location)` can be implemented using the kernel method `getNextEntry()`. The method would iterate over the travel log, calling `getNextEntry()` to retrieve the next entry. If the entry contains the specified location, it would be added to a new queue using the `addEntry(String location, String date, String notes)` method. This would allow us to filter the entries by location without needing to directly manipulate the queue's internal structure.
+      - Yes. For example, `filterByLocation(String location)` can be implemented using the kernel method `getNextEntry()`. The method would iterate over the travel log, calling `getNextEntry()` to retrieve the next entry. If the entry contains the specified location, it would be added to a new queue using the `addEntry(String location, String date, String notes)` method. This would allow us to filter the entries by location without needing to directly manipulate the queue's internal structure.
 
 - Component Design #2: TaskManager
   - **Description**:
-    The purpose of this component is to manage a collection of tasks. The intent of this design is to provide a structured way to add, retrieve, and organize tasks efficiently. The kernel provides essential methods for managing tasks, while the secondary methods offer more complex operations such as searching, filtering, and sorting.
+    - The purpose of this component is to manage a collection of tasks. The intent of this design is to provide a structured way to add, retrieve, and organize tasks efficiently. The kernel provides essential methods for managing tasks, while the secondary methods offer more complex operations such as searching, filtering, and sorting.
   - **Kernel Methods**:
-    `void addTask(String description, String dueDate, String priority)`: adds a task with the given details to the task manager
-    `String getNextTask()`: removes and returns the next task based on priority or due date
-    `String peekNextTask()`: returns the next task without removing it
-    `int getTaskCount()`: returns the number of tasks in the task manager
-    `void clearTasks()`: removes all tasks from the task manager
+    - `void addTask(String description, String dueDate, String priority)`: adds a task with the given details to the task manager
+    - `String getNextTask()`: removes and returns the next task based on priority or due date
+    - `String peekNextTask()`: returns the next task without removing it
+    - `int getTaskCount()`: returns the number of tasks in the task manager
+    - `void clearTasks()`: removes all tasks from the task manager
   - **Secondary Methods**:
-    `void reorderByDueDate()`: sorts the tasks in chronological order based on due date using a queue-based sorting algorithm
-    `boolean contains(String description)`: checks if the task manager contains a task with the given description
-    `Queue<String> filterByPriority(String priority)`: returns a queue of tasks that match a specific priority level
-    `Queue<String> filterByDueDate(String dueDate)`: returns a queue of tasks due on a specific date
-    `void mergeTaskManagers(TaskManager other)`: merges another `TaskManager` into this one while maintaining order by due date and priority
-    `void removeTask(String description)`: removes a specific task based on its description
-    `void printTasks()`: displays all tasks in the task manager in order
+    - `void reorderByDueDate()`: sorts the tasks in chronological order based on due date using a queue-based sorting algorithm
+    - `boolean contains(String description)`: checks if the task manager contains a task with the given description
+    - `Queue<String> filterByPriority(String priority)`: returns a queue of tasks that match a specific priority level
+    - `Queue<String> filterByDueDate(String dueDate)`: returns a queue of tasks due on a specific date
+    - `void mergeTaskManagers(TaskManager other)`: merges another `TaskManager` into this one while maintaining order by due date and priority
+    - `void removeTask(String description)`: removes a specific task based on its description
+    - `void printTasks()`: displays all tasks in the task manager in order
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      Yes, this component would be mutable since tasks need to be added, removed, and reordered dynamically. The methods `addTask(String description, String dueDate, String priority)`, `getNextTask()`, and `clearTasks()` modify the internal state of the task manager.
+      - Yes, this component would be mutable since tasks need to be added, removed, and reordered dynamically. The methods `addTask(String description, String dueDate, String priority)`, `getNextTask()`, and `clearTasks()` modify the internal state of the task manager.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      Yes, this component would rely on an internal `Task` class to store the description, due date, and priority of each task. This allows for structured data management and enables sorting and filtering operations.
+      - Yes, this component would rely on an internal `Task` class to store the description, due date, and priority of each task. This allows for structured data management and enables sorting and filtering operations.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      Yes, priority levels (LOW, MEDIUM, HIGH) could be represented using an enum to ensure consistency in task categorization.
+      - Yes, priority levels (LOW, MEDIUM, HIGH) could be represented using an enum to ensure consistency in task categorization.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      Yes. For example, `filterByPriority(String priority)` can be implemented using `getNextTask()`. The method would iterate over the task manager, calling `getNextTask()` to retrieve tasks one by one. If a task matches the specified priority, it would be added to a new queue using `addTask(String description, String dueDate, String priority)`. This approach ensures that filtering is achieved while maintaining the original task order.
+      - Yes. For example, `filterByPriority(String priority)` can be implemented using `getNextTask()`. The method would iterate over the task manager, calling `getNextTask()` to retrieve tasks one by one. If a task matches the specified priority, it would be added to a new queue using `addTask(String description, String dueDate, String priority)`. This approach ensures that filtering is achieved while maintaining the original task order.
 
 - Component Design #3: MusicPlaylist
   - **Description**:
-    The purpose of this component is to model a playlist of songs. The core functionality allows adding, removing, and retrieving songs while preserving the playlist order. The kernel methods provide the fundamental operations for modifying the playlist, while the secondary methods extend functionality, such as shuffling and sorting.
+    - The purpose of this component is to model a playlist of songs. The core functionality allows adding, removing, and retrieving songs while preserving the playlist order. The kernel methods provide the fundamental operations for modifying the playlist, while the secondary methods extend functionality, such as shuffling and sorting.
   - **Kernel Methods**:
-    `void addSong(String song)`: adds `song` to the end of the playlist
-    `String removeSong(int index)`: removes and returns the song at the given index
-    `String getSong(int index)`: returns the song at the given index without removing it
-    `int length()`: returns the number of songs in the playlist
-    `void clear()`: removes all songs from the playlist
+    - `void addSong(String song)`: adds `song` to the end of the playlist
+    - `String removeSong(int index)`: removes and returns the song at the given index
+    - `String getSong(int index)`: returns the song at the given index without removing it
+    - `int length()`: returns the number of songs in the playlist
+    - `void clear()`: removes all songs from the playlist
   - **Secondary Methods**:
-    `void moveSong(int fromIndex, int toIndex)`: moves a song from `fromIndex` to `toIndex`, shifting other songs accordingly
-    `void shuffle()`: randomly rearranges the order of songs in the playlist
-    `void sort(Comparator<String> order)`: sorts the playlist according to the given comparator
-    `boolean contains(String song)`: returns `true` if the playlist contains `song`, otherwise returns false
-    `void merge(MusicPlaylist other)`: appends all songs from `other` to `this`, clearing `other`
-    `String getNextSong()`: returns and removes the first song in the playlist (useful for a queue-like behavior)
+    - `void moveSong(int fromIndex, int toIndex)`: moves a song from `fromIndex` to `toIndex`, shifting other songs accordingly
+    - `void shuffle()`: randomly rearranges the order of songs in the playlist
+    - `void sort(Comparator<String> order)`: sorts the playlist according to the given comparator
+    - `boolean contains(String song)`: returns `true` if the playlist contains `song`, otherwise returns false
+    - `void merge(MusicPlaylist other)`: appends all songs from `other` to `this`, clearing `other`
+    - `String getNextSong()`: returns and removes the first song in the playlist (useful for a queue-like behavior)
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      Yes. Since playlists change dynamically (songs can be added, removed, and reordered), mutability is necessary.
+      - Yes. Since playlists change dynamically (songs can be added, removed, and reordered), mutability is necessary.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      No. The playlist can be represented internally as a `Queue<String>` without needing nested classes.
+      - No. The playlist can be represented internally as a `Queue<String>` without needing nested classes.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      Potentially. Constants such as `DEFAULT_SORT_ORDER` (sorting alphabetically) or predefined playlist types (`SHUFFLE_MODE`, `LOOP_MODE`) could be useful.
+      - Potentially. Constants such as `DEFAULT_SORT_ORDER` (sorting alphabetically) or predefined playlist types (`SHUFFLE_MODE`, `LOOP_MODE`) could be useful.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      Yes. `merge(MusicPlaylist other)` can be implemented using repeated calls to `addSong(String song)` for all songs in `other`, followed by `clear()`. `shuffle()` can be implemented by copying songs into a temporary list, shuffling it, clearing the original playlist, and re-adding the shuffled songs.
+      - Yes. `merge(MusicPlaylist other)` can be implemented using repeated calls to `addSong(String song)` for all songs in `other`, followed by `clear()`. `shuffle()` can be implemented by copying songs into a temporary list, shuffling it, clearing the original playlist, and re-adding the shuffled songs.
 
 ## Post-Assignment
 
