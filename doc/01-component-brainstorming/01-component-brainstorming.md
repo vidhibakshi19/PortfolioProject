@@ -1,12 +1,10 @@
 # Portfolio Part 1: Component Brainstorming
 
-- **Name**: <!-- TODO: fill with first and last name (e.g., Brutus Buckeye) then delete this comment -->
-- **Dot Number**: <!-- TODO: fill with OSU dot number (e.g., buckeye.17) then delete this comment -->
-- **Due Date**: <!-- TODO: fill with due date and time (e.g., 10/17 @ 3:10 PM EST) then delete this comment -->
+- **Name**: Vidhi Bakshi
+- **Dot Number**: bakshi.46
+- **Due Date**: 02/04 @ 1:50 PM EST
 
 ## Assignment Overview
-
-<!-- TODO: read the assignment overview then delete this comment -->
 
 The overall goal of the portfolio project is to have you design and implement
 your own OSU component. There are no limits to what you choose to design and
@@ -29,8 +27,6 @@ implement.
 
 ## Assignment Checklist
 
-<!-- TODO: browse the checklist then delete this comment -->
-
 To be sure you have completed everything on this assignment, we have littered
 this document with TODO comments. You can browse all of them in VSCode by
 opening the TODOs window from the sidebar. The icon looks like a tree and will
@@ -52,8 +48,6 @@ to the tree diagram (you may remove this one as well):
 
 ## Assignment Learning Objectives
 
-<!-- TODO: read the assignment learning objectives then delete this comment -->
-
 Without learning objectives, there really is no clear reason why a particular
 assessment or activity exists. Therefore, to be completely transparent, here is
 what we're hoping you will learn through this particular aspect of the portfolio
@@ -66,8 +60,6 @@ project. Specifically, students should be able to:
    discipline
 
 ## Assignment Rubric: 10 Points
-
-<!-- TODO: read the assignment rubric then delete this comment -->
 
 Again, to be completely transparent, most of the portfolio project, except the
 final submission, is designed as a formative assessment. Formative assessments
@@ -106,23 +98,17 @@ Below is further rationale/explanation for the rubric items above:
 > brainstorming. Plus it helps us get to know you better! Feel free to share
 > images in this section.
 
-<!-- TODO: briefly talk about your interests then delete this comment.
-Also, protip: you can preview what your response looks like by hitting
-the magnifying glass icon in the upper-right corner or pressing CTRL+K and
-then V. This kind of button combination is called a chord, for whatever
-reason -->
+Interests: Music (Singing + Dancing), Reading, Watching Movies, Traveling, Exploring New Food Places
+Career Goals: Leveraging Technology For Social Good, Applied Machine Learning
+Personal Hobbies: Sewing, Building Legos, NYT Games
 
 ## Assignment
-
-<!-- TODO: read the assignment section then delete this comment -->
 
 As previously stated, you are tasked with brainstorming 3 possible components.
 To aid you in this process, we have provided [some example components][example-components]
 that may help you in your brainstorming. All of these components were made at
 some point by one of your peers, so you should feel confident that you can
 accomplish any of them.
-
-<!-- TODO: browse the list of possible projects then delete this comment -->
 
 There is no requirement that you use any of the components listed above.
 If you want to model something else, go for it! Very common early object
@@ -131,8 +117,6 @@ etc. Make of this whatever seems interesting to you, and keep in mind that
 you're just brainstorming right now. You do not have to commit to anything.
 
 ### Example Component
-
-<!-- TODO: review this example component then delete this comment -->
 
 To help you brainstorm a few components, we've provided an example below of a
 component you already know well: NaturalNumber. We highly recommend that you
@@ -200,68 +184,97 @@ will likely refine your design to make your implementation easier to use.
 
 > Please use this section to share your designs.
 
-- Component Design #1: <!-- TODO: give component a name then delete this comment -->
+- Component Design #1: TravelLog
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    The purpose of this component is to model a travel log, which keeps track of trips in the order they were taken using a queue. This ensures that travel entries are recorded in chronological order. The kernel methods handle adding and retrieving trips, while the secondary methods provide advanced operations like filtering, merging, and sorting.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    `void addEntry(String location, String date, String notes)`: adds a travel entry with the given `location`, `date`, and `notes` to the log
+    `String getNextEntry()`: removes and returns the earliest entry in the log
+    `String peekNextEntry()`: returns the earliest entry without removing it
+    `int getLogSize()`: returns the number of entries in the travel log
+    `void clearLog()`: removes all entries from the travel log
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    `void reorderByDate()`: sorts the travel log chronologically using a queue-based sorting algorithm
+    `boolean contains(String location)`: checks if the log contains an entry for a given location
+    `Queue<String> filterByLocation(String location)`: returns a queue of entries that match a specific location
+    `Queue<String> filterByYear(int year)`: returns a queue of entries from a specific year
+    `void mergeLogs(TravelLog other)`: merges another `TravelLog` into this one while maintaining chronological order
+    `void removeEntry(String location, String date)`: removes a specific entry based on location and date
+    `void printLog()`: displays the entire travel log in order
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes, `TravelLog` must be mutable because entries can be added, removed, and reordered dynamically.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Possibly. A TripEntry class might be useful to store `location`, `date`, and `notes` instead of just using `String`.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Possibly. An enum like `TransportMode { PLANE, TRAIN, CAR, BUS, BOAT }` could be used for optional categorization.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes. For example, `filterByLocation(String location)` can be implemented using the kernel method `getNextEntry()`. The method would iterate over the travel log, calling `getNextEntry()` to retrieve the next entry. If the entry contains the specified location, it would be added to a new queue using the `addEntry(String location, String date, String notes)` method. This would allow us to filter the entries by location without needing to directly manipulate the queue's internal structure.
 
-- Component Design #2: <!-- TODO: give component a name then delete this comment -->
+- Component Design #2: TaskManager
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    The purpose of this component is to manage a collection of tasks. The intent of this design is to provide a structured way to add, retrieve, and organize tasks efficiently. The kernel provides essential methods for managing tasks, while the secondary methods offer more complex operations such as searching, filtering, and sorting.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    `void addTask(String description, String dueDate, String priority)`: adds a task with the given details to the task manager
+    `String getNextTask()`: removes and returns the next task based on priority or due date
+    `String peekNextTask()`: returns the next task without removing it
+    `int getTaskCount()`: returns the number of tasks in the task manager
+    `void clearTasks()`: removes all tasks from the task manager
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    `void reorderByDueDate()`: sorts the tasks in chronological order based on due date using a queue-based sorting algorithm
+    `boolean contains(String description)`: checks if the task manager contains a task with the given description
+    `Queue<String> filterByPriority(String priority)`: returns a queue of tasks that match a specific priority level
+    `Queue<String> filterByDueDate(String dueDate)`: returns a queue of tasks due on a specific date
+    `void mergeTaskManagers(TaskManager other)`: merges another `TaskManager` into this one while maintaining order by due date and priority
+    `void removeTask(String description)`: removes a specific task based on its description
+    `void printTasks()`: displays all tasks in the task manager in order
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes, this component would be mutable since tasks need to be added, removed, and reordered dynamically. The methods `addTask(String description, String dueDate, String priority)`, `getNextTask()`, and `clearTasks()` modify the internal state of the task manager.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes, this component would rely on an internal `Task` class to store the description, due date, and priority of each task. This allows for structured data management and enables sorting and filtering operations.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes, priority levels (LOW, MEDIUM, HIGH) could be represented using an enum to ensure consistency in task categorization.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes. For example, `filterByPriority(String priority)` can be implemented using `getNextTask()`. The method would iterate over the task manager, calling `getNextTask()` to retrieve tasks one by one. If a task matches the specified priority, it would be added to a new queue using `addTask(String description, String dueDate, String priority)`. This approach ensures that filtering is achieved while maintaining the original task order.
 
-- Component Design #3: <!-- TODO: give component a name then delete this comment -->
+- Component Design #3: MusicPlaylist
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    The purpose of this component is to model a playlist of songs. The core functionality allows adding, removing, and retrieving songs while preserving the playlist order. The kernel methods provide the fundamental operations for modifying the playlist, while the secondary methods extend functionality, such as shuffling and sorting.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    `void addSong(String song)`: adds `song` to the end of the playlist
+    `String removeSong(int index)`: removes and returns the song at the given index
+    `String getSong(int index)`: returns the song at the given index without removing it
+    `int length()`: returns the number of songs in the playlist
+    `void clear()`: removes all songs from the playlist
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    `void moveSong(int fromIndex, int toIndex)`: moves a song from `fromIndex` to `toIndex`, shifting other songs accordingly
+    `void shuffle()`: randomly rearranges the order of songs in the playlist
+    `void sort(Comparator<String> order)`: sorts the playlist according to the given comparator
+    `boolean contains(String song)`: returns `true` if the playlist contains `song`, otherwise returns false
+    `void merge(MusicPlaylist other)`: appends all songs from `other` to `this`, clearing `other`
+    `String getNextSong()`: returns and removes the first song in the playlist (useful for a queue-like behavior)
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes. Since playlists change dynamically (songs can be added, removed, and reordered), mutability is necessary.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      No. The playlist can be represented internally as a `Queue<String>` without needing nested classes.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Potentially. Constants such as `DEFAULT_SORT_ORDER` (sorting alphabetically) or predefined playlist types (`SHUFFLE_MODE`, `LOOP_MODE`) could be useful.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      Yes. `merge(MusicPlaylist other)` can be implemented using repeated calls to `addSong(String song)` for all songs in `other`, followed by `clear()`. `shuffle()` can be implemented by copying songs into a temporary list, shuffling it, clearing the original playlist, and re-adding the shuffled songs.
 
 ## Post-Assignment
 
@@ -269,8 +282,6 @@ The following sections detail everything that you should do once you've
 completed the assignment.
 
 ### Changelog
-
-<!-- TODO: create CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -288,13 +299,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
-## YYYY.MM.DD
+## 2025.02.13
 
 ### Added
 
-- Designed a <!-- insert name of component 1 here --> component
-- Designed a <!-- insert name of component 2 here --> component
-- Designed a <!-- insert name of component 3 here --> component
+- Designed a TravelLog component
+- Designed a TaskManager component
+- Designed a MusicPlaylist component
 ```
 
 Here `YYYY.MM.DD` would be the date of your submission, such as 2024.04.21.
@@ -309,8 +320,6 @@ of development.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
-
 If you have completed the assignment using this template, we recommend that
 you convert it to a PDF before submission. If you're not sure how, check out
 this [Markdown to PDF guide][markdown-to-pdf-guide]. However, PDFs should be
@@ -319,11 +328,7 @@ all your work is there before submitting. For future assignments, you will
 just be submitting a link to a pull request. This will be the only time
 you have to submit any PDFs.
 
-<!-- TODO: upload a PDF of this document and the CHANGELOG to Carmen then delete this comment -->
-
 ### Peer Review
-
-<!-- TODO: review the peer review guidelines then delete this comment -->
 
 Following the completion of this assignment, you will be assigned three
 students' component brainstorming assignments for review. Your job during the
@@ -349,8 +354,6 @@ PDF to read this rubric as a table).
 If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
-
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [example-components]: https://therenegadecoder.com/code/the-never-ending-list-of-small-programming-project-ideas/
 [markdown-to-pdf-guide]: https://therenegadecoder.com/blog/how-to-convert-markdown-to-a-pdf-3-quick-solutions/
